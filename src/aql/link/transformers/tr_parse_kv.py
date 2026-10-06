@@ -11,7 +11,10 @@ from ..registry import (
         name="PARSE_KV",
         printable=SqlFunc(
             description="Parse log fields into key/value pairs.",
-            template=["SELECT PARSE_KV(<field>)"],
+            template=[
+                "SELECT PARSE_KV(<field:str>)",
+                "SELECT PARSE_KV(<field:str>) AS generic_alias",
+            ],
             extra_info="Pattern by default is \s then =",
             func_type=FuncType.TRANSFORM,
             input_type=[FieldType.TEXT],

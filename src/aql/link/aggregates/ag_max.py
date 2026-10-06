@@ -11,9 +11,12 @@ from ..registry import (
         printable=SqlFunc(
             description="Find largest value in a collection.",
             template=[
-                "SELECT MAX(<field>)",
-                "HAVING MAX(<field>) <op> <value:int>",
-                "ORDER BY MAX(<field>)"
+                "SELECT MAX(<field:int>)",
+                "SELECT MAX(<field:int>) AS generic_alias",
+                "HAVING MAX(<field:int>) <op:int> <value:int>",
+                "HAVING MAX(<field:int>) BETWEEN <value:int> AND <value:int>",
+                "HAVING MAX(<field:int>) IN [<value:int>, <value:int>]",
+                "ORDER BY MAX(<field:int>)"
             ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],

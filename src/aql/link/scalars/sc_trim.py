@@ -10,10 +10,14 @@ from ..registry import (
         name="TRIM",
         printable=SqlFunc(
             description="Remove whitespace before and after.",
-            template=["SELECT TRIM(<field>)"],
+            template=[
+                "SELECT TRIM(<field:str>)",
+                "SELECT TRIM(<field:str>) AS generic_alias",
+            ],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
-            return_type=FieldType.TEXT
+            return_type=FieldType.TEXT,
+            needs_groupby=False
         )
     )
 class TrimFunction(ScalarFunction):

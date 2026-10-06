@@ -10,10 +10,14 @@ from ..registry import (
         name="TITLE",
         printable=SqlFunc(
             description="Capitalize first letter a word.",
-            template=["SELECT TITLE(<field>)"],
+            template=[
+                "SELECT TITLE(<field:str>)",
+                "SELECT TITLE(<field:str>) AS generic_alias",
+            ],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
-            return_type=FieldType.TEXT
+            return_type=FieldType.TEXT,
+            needs_groupby=False
         )
     )
 class TitleFunction(ScalarFunction):

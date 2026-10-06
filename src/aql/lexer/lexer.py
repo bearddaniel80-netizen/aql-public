@@ -41,6 +41,10 @@ class Lexer:
 
         while True:
             tok = self.next_token()
+            if not tok:
+                # print("Lexer tokenize: ", tokens)
+                break
+                
             tokens.append(tok)
             if tok.type == TokenType.EOF:
                 break

@@ -10,10 +10,14 @@ from ..registry import (
         name="HEX",
         printable=SqlFunc(
             description="Returns hexadecimal value.",
-            template=["SELECT HEX(<field>)"],
+            template=[
+                "SELECT HEX(<field:int>)",
+                "SELECT HEX(<field:int>) AS generic_alias",
+            ],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.INT, FieldType.FLOAT, FieldType.COMPLEX],
-            return_type=FieldType.TEXT
+            return_type=FieldType.TEXT,
+            needs_groupby=False
         )
     )
 class HexFunction(ScalarFunction):

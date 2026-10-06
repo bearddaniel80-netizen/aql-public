@@ -10,10 +10,16 @@ from ..registry import (
         name="IS_NULL",
         printable=SqlFunc(
             description="Checks is null.",
-            template=["SELECT IS_NULL(<field>)"],
+            template=[
+                "SELECT IS_NULL(<field:int>)",
+                "SELECT IS_NULL(<field:str>)",
+                "SELECT IS_NULL(<field:int>) AS generic_alias",
+                "SELECT IS_NULL(<field:str>) AS generic_alias",
+            ],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.ANY],
-            return_type=FieldType.BOOL
+            input_type=[FieldType.STR,FieldType.INT],
+            return_type=FieldType.BOOL,
+            needs_groupby=False
         )
     )
 class IsNullFunction(ScalarFunction):

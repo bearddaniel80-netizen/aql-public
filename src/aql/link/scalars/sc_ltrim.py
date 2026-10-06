@@ -7,12 +7,12 @@ from ..registry import (
     ) 
 
 @register_function_call(
-        name="UPPER",
+        name="LTRIM",
         printable=SqlFunc(
-            description="Make every letter upper case.",
+            description="Remove whitespace before.",
             template=[
-                "SELECT UPPER(<field:str>)",
-                "SELECT UPPER(<field:str>) AS generic_alias",
+                "SELECT LTRIM(<field:str>)",
+                "SELECT LTRIM(<field:str>) AS generic_alias",
             ],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
@@ -20,10 +20,10 @@ from ..registry import (
             needs_groupby=False
         )
     )
-class UpperFunction(ScalarFunction):
+class LTrimFunction(ScalarFunction):
 
     def __init__(self):
         self.kind = "scalar"
 
     def evaluate(self, value):
-        return value.upper()
+        return value.lstrip()

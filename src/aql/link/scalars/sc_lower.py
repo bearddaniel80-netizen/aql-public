@@ -10,10 +10,14 @@ from ..registry import (
         name="LOWER",
         printable=SqlFunc(
             description="Make every letter lower case.",
-            template=["SELECT LOWER(<field>)"],
+            template=[
+                "SELECT LOWER(<field:str>)",
+                "SELECT LOWER(<field:str>) AS generic_alias",
+            ],
             func_type=FuncType.SCALAR,
             input_type=[FieldType.TEXT],
-            return_type=FieldType.TEXT
+            return_type=FieldType.TEXT,
+            needs_groupby=False
         )
     )
 class LowerFunction(ScalarFunction):

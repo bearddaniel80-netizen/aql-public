@@ -10,10 +10,16 @@ from ..registry import (
         name="IS_ALPHA",
         printable=SqlFunc(
             description="Checks if field DOES NOT contain numbers, puncation, nor spaces.",
-            template=["SELECT IS_ALPHA(<field>)"],
+            template=[
+                "SELECT IS_ALPHA(<field:str>)",
+                "SELECT IS_ALPHA(<field:str>) AS generic_alias",
+                "SELECT IS_ALPHA(<field:int>)",
+                "SELECT IS_ALPHA(<field:int>) AS generic_alias",
+            ],
             func_type=FuncType.SCALAR,
-            input_type=[FieldType.TEXT],
-            return_type=FieldType.BOOL
+            input_type=[FieldType.TEXT,FieldType.INT],
+            return_type=FieldType.BOOL,
+            needs_groupby=False
         )
     )
 class IsAlphaFunction(ScalarFunction):

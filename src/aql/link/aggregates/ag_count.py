@@ -11,9 +11,12 @@ from ..registry import (
         printable=SqlFunc(
             description="Count elements in a collection.",
             template=[
-                "SELECT COUNT(<field>)",
-                "HAVING COUNT(<field>) <op> <value:int>",
-                "ORDER BY COUNT(<field>)"
+                "SELECT COUNT(<field:int>)",
+                "SELECT COUNT(<field:int>) AS generic_alias",
+                "HAVING COUNT(<field:int>) <op:int> <value:int>",
+                "HAVING COUNT(<field:int>) BETWEEN <value:int> AND <value:int>",
+                "HAVING COUNT(<field:int>) IN [<value:int>, <value:int>]",
+                "ORDER BY COUNT(<field:int>)"
             ],
             func_type=FuncType.AGGREGATE,
             input_type=[FieldType.INT],
