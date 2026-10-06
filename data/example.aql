@@ -1,20 +1,16 @@
+#!/usr/local/bin/aql --script
+
 USING "some.aql"
 
 DECLARE csv AS csv('data.csv')
-DECLARE some macro AS SHOW aggregates
+DECLARE some_macro AS SELECT * FROM aggregates
 
--- this is a comment
-# this is a comment
-// this is a comment
-/*
-    comment block
-*/
 /**
     doc block
     @author: me
     @type: file info
 */
-/// doc comment line
+
 /*
 RECURSIVE index_cte AS ( -- inline comment
     SELECT 1 AS id # inline comment
@@ -23,7 +19,7 @@ RECURSIVE index_cte AS ( -- inline comment
 ), 
 */
 WITH some_cte AS (
-    some macro // inline comment
+    some_macro // inline comment
 ), other_cte AS (
     SELECT age FROM csv # test of inline comment
 ), log_cte AS (
@@ -32,6 +28,6 @@ WITH some_cte AS (
     SHOW aggregates
 )
 
-SELECT * FROM aggregate_cte
+# SELECT * FROM aggregate_cte
 # SELECT user FROM log_cte WHERE user = 'bob'
-# SELECT * FROM some_cte
+SELECT * FROM some_cte
