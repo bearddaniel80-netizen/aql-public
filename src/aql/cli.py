@@ -2,16 +2,14 @@ import typer
 from rich import print_json
 from pathlib import Path
 
-from .domain.query import query_results
-from .preprocess.factory import Preprocessor
 from .preprocess.about.types import AboutType
-from .preprocess.about.registry import ABOUT_REGISTRY
-from .preprocess.about import pipeline
-from .preprocess.models import SourceLoader, ImportGraph
+from .domain.query import query_results
+from .domain.preprocess.about import main as about_main
+from .domain.preprocess.run import main as run_main
 
 app = typer.Typer(help="AQL query everything.")
 
-@app.command()
+@app.command(help="Get metadata on script files")
 def about(
     filename: str = typer.Argument(
         ...,
@@ -24,31 +22,25 @@ def about(
     ),
 ):
     # typer.echo(f"About: {filename}")
-    path = Path.cwd() / filename
-    source_loader = SourceLoader()
-    import_graph = ImportGraph(root=ImportNode(path))
-    preprocess_ctx = Preprocessor(source_loader).process(path)
-    fn = ABOUT_REGISTRY[category]
-    if not fn:
-        raise Exception(f"About type {category} no found.")
-    fn_cls = fn()
-    result = fn_cls.process(source_loader)
+    result = about_main(filename, category)
     print_json(data=result)
 
-@app.command()
+@app.command(help="Create documentation from source")
 def docs():
-    typer.echo("Writing docs")
-    from .docs.documentation_filter import Filter
+    # typer.echo("Writing docs")
+    from .docs_filter.documentation_filter import DocumentationFilter
     from .docs.factory import DocumentationFactory
-    query_results = DocumentationFactory().create().queries_classification['csv']
-    queries = [q.to_dict() for q in query_results]
-    # Filter().from_source(queries).where("fields", "*").largest().print_source()
-    Filter().from_source(queries).where("feature", "SUM").largest().print_source()
-    # print_json(data=[q.to_dict() for q in query_results])
 
-    print("Number of queries: ", len(query_results))
+    _filter = DocumentationFilter()
+    query_results = DocumentationFactory().create().queries_classification
 
-@app.command()
+    for k, v in query_results.items():
+        queries = [q.to_dict() for q in v]
+        _filter.source(k, queries)
+        if k == "json":
+            _filter.all_features(queries)
+
+@app.command(help="Single line queries")
 def query(
     q: str = typer.Argument(
         ...,
@@ -58,7 +50,7 @@ def query(
     # typer.echo(f"Query: {q}")
     query_results(q)
 
-@app.command()
+@app.command(help="Run a aql script file")
 def run(
     filename: str = typer.Argument(
         ...,
@@ -66,14 +58,12 @@ def run(
     )
 ):
     # typer.echo(f"Run: {filename}")
-    path = Path.cwd() / filename
-    source_loader = SourceLoader()
-    preprocess_ctx = Preprocessor(source_loader).process(path)
 
-    data = " ".join(preprocess_ctx.source)
+    data = run_main(filename)
     query_results(data)
 
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context, script: Path | None = None):
+    # print(f"{script} as a linux shell script.")
     if script:
         run(script)
