@@ -1,0 +1,45 @@
+# Table Function
+
+The table function allows you to read and query data from many types of media; databases, files, or even streams.
+
+In AQL, the table function can be used in the following clause: `FROM`.
+
+---
+
+## SHOW
+One can see the current table function list:
+```bash
+aql query "SHOW table_functions"
+```
+---
+
+## DESCRIBE
+One can see the data types in the table function list:
+```bash
+aql query "DESCRIBE table_functions"
+```
+---
+
+## SELECT
+One can query the current table function list:
+```bash
+aql query "SELECT * FROM table_functions"
+```
+---
+
+## Common table expression (CTE)
+One can query the current table function list using a cte:
+```bash
+aql query "WITH generic_cte AS ( SELECT * FROM table_functions ) SELECT * FROM generic_cte"
+```
+---
+
+
+The table function will work on all sources; here we will show JSON source.
+
+---
+table function count: <table:count>
+
+<table:list>
+
+table function count: <table:count>

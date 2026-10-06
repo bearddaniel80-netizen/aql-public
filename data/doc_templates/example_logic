@@ -1,0 +1,60 @@
+# Logic Operatortors
+
+Logic operators allows you to limit query results to records that match combioned conditions.
+
+In AQL, logic operators can be used in any or all of the following clauses: `WHERE`, `HAVING`, and `ORDER BY`. Also it can be combined with [negation operator](negsation.md), [binary operators](binaryop.md).
+Logic Operators will work on all sources; here we will show JSON source.
+
+---
+
+## Basic Syntax
+
+```sql 
+<op:and:star>
+```
+
+```sql 
+<op:or:star>
+```
+
+Or an individual field:
+
+```sql
+<op:and:single>
+```
+
+```sql
+<op:or:single>
+```
+
+Only records matching the condition are returned.
+
+## HAVING
+
+```sql
+<having:op:and>
+```
+
+```sql
+<having:op:or>
+```
+
+## ORDER BY
+
+```sql
+<order:op:and>
+```
+
+```sql
+<order:op:or>
+```
+
+## Common Table Expressions
+
+```sql
+<cte:op:and>
+```
+
+```sql
+<cte:op:or>
+```
