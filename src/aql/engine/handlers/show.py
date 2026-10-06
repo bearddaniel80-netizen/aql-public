@@ -69,7 +69,7 @@ class ShowHandler(BaseHandler):
         return pipeline.run(data)
 
     def handle_fn_call(self, ast):
-        from ...link import fn_call
+        from ...link.registry import FUNCTION_CALL_REGISTRY
         
         fn_name = ast.target.name
 

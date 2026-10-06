@@ -33,6 +33,9 @@ class SourceStage(Stage):
     def _add_id(self, data):
         tmp = list(data)
         for i in range(0, len(tmp)):
-            tmp[i]["ID"] = i + 1
+            if isinstance(tmp[i], dict):
+                tmp[i]["ID"] = i + 1
+            else:
+                tmp[i].ID = i + 1
 
         return tmp

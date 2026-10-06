@@ -39,7 +39,7 @@ class AggregateStage(Stage):
 
                 # Emit GROUP BY columns
                 for field, value in zip(query.group_by.fields, group_key):
-                    result[field.alias or field.name] = value
+                    result[field.name] = value
 
                 # Emit aggregates
                 for field in aggregates:

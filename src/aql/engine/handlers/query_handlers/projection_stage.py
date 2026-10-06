@@ -34,7 +34,7 @@ class ProjectStage(Stage):
 
                 key = field.alias or field.name
 
-                result[key] = row.get(field.name)
+                result[key] = row.get(key)
 
             elif isinstance(field, FunctionCall):
 

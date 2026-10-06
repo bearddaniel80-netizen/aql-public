@@ -1,5 +1,6 @@
 from .base import Stage
 from collections import defaultdict
+from ..query_exec_context import ExecutionContext
 
 class GroupByStage(Stage):
     def execute(self, context):
@@ -12,7 +13,7 @@ class GroupByStage(Stage):
         for row in context.rows:
 
             key = tuple(
-                row[field.name]
+                field.name
                 for field in context.query.group_by.fields
             )
 

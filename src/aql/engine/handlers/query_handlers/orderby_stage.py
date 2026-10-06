@@ -1,4 +1,5 @@
 from .base import Stage
+from ..query_exec_context import ExecutionContext
 
 class OrderByStage(Stage):
 
@@ -11,16 +12,16 @@ class OrderByStage(Stage):
 
         context.rows = sorted(
             context.rows,
-            key=self.build_key(query.order_by.field),
-            reverse=query.order_by.descending
+            key=self.build_key(query.order_by[0].field, context),
+            reverse=query.order_by[0].descending
         )
 
         return context
 
-    def build_key(self, field):
+    def build_key(self, field, context):
         def key(row):
-            value = row.get(field)
-
+            value = context.engine_context.evaluator.evaluate(field, row)
+            
             return (
                 value is None,
                 value
