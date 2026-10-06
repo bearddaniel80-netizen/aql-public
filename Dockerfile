@@ -58,3 +58,5 @@ RUN pip install /tmp/*.whl
 WORKDIR /app
 
 COPY data .
+
+RUN chmod -R +x *
