@@ -22,11 +22,11 @@ class DocumentationFilter:
 
         ctx = FilterContext(
             name=name,
-            destination=config["destination"],
+            destination=config.destination,
             queries=queries,
         )
 
-        ctx.content = self._load_template(config["template"])
+        ctx.content = self._load_template(config.template)
 
         for stage in STAGE_REGISTRY:
             if stage.has_marker(ctx.content):
