@@ -1,0 +1,27 @@
+# OrderBy clause
+
+The order by clause allows you puts results either asending (ASC) or descending (DESC) order. By default, without specifing ASC or DESC, ASC will be used. 
+
+In AQL, the order by clause can be used with the following clauses: `WHERE` or `HAVING`. The order by clause combins with [binary operators](binaryop.md) and optionally [logic operators](logic.md).
+The order by clause will work on all sources and field aliases; here we will show JSON source.
+
+---
+
+## Basic Syntax
+
+```sql 
+<order:star>
+```
+Or an individual field:
+
+```sql
+<order:single>
+```
+
+Only records matching the condition are returned.
+
+## Common Table Expressions
+
+```sql
+<order:cte>
+```

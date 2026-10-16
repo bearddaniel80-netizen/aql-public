@@ -1,0 +1,21 @@
+# Common Table Expressions
+
+The cte allows you to build temporary query which then be called as a table.
+
+In AQL, the cte can be used with the following clauses: `SELECT`, `FROM`, `GROUP BY`, `WHERE`, `HAVING` or `ORDER BY`. The cte combins with [binary operators](binaryop.md) and optionally [logic operators](logic.md).
+The cte will work on all sources; here we will show JSON source.
+
+---
+
+## Basic Syntax
+
+```sql 
+<cte:star>
+```
+Or an individual field:
+
+```sql
+<cte:single>
+```
+
+Only records matching the condition are returned.

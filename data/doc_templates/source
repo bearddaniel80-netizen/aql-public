@@ -1,0 +1,35 @@
+# <source:upper>
+
+The `<source>()` source allows AQL to query <source:upper> files using standard SQL-inspired syntax.
+
+<source:upper> files are treated as tabular data sources, making them accessible through the same query interface used for Aegis data, databases, and other supported formats.
+
+---
+
+## Commandline execution
+
+```bash
+aql query "<field:star>"
+```
+
+## Query Patterns
+
+Select all columns:
+
+```sql
+<field:star>
+```
+
+Select specific columns:
+
+```sql
+<field:single>
+```
+
+## Common Table Expressions:
+
+```sql
+<cte:single>
+```
+
+---
