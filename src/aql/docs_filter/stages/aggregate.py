@@ -2,7 +2,12 @@ from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
 from ...engine.resolve_source_handlers.identifier_sources.aggregates import AggregateSource
 
-# replace placeholder <order:single>
+from ..registry import pattern
+
+@pattern([
+    "<aggregate:list>", 
+    "<aggregate:count>"
+])
 class AggregatesReplace(BaseReplace):
     def content_replace(self, ctx):
 
@@ -23,5 +28,6 @@ class AggregatesReplace(BaseReplace):
             result = result.replace("<query>", tmp_query)
             results = results + result
 
+        print(f"results: {results}")
         ctx.content = ctx.content.replace("<aggregate:list>", results)
         ctx.content = ctx.content.replace("<aggregate:count>", str(len(query_results)))

@@ -2,7 +2,12 @@ from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
 from ...engine.resolve_source_handlers.identifier_sources.scalars import ScalarSource
 
-# replace placeholder <order:single>
+from ..registry import pattern
+
+@pattern([
+    "<scalar:list>", 
+    "<scalar:count>"
+])
 class ScalarsReplace(BaseReplace):
     def content_replace(self, ctx):
 

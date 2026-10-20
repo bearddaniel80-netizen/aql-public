@@ -1,7 +1,13 @@
 from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
+from ..registry import pattern
 
-# replace placeholder <field:single>
+@pattern([
+    "<field:single>", 
+    "<op:and:single>",
+    "<op:or:single>",
+    "<neg:single>"
+])
 class FieldSingleReplace(BaseReplace):
     def content_replace(self, ctx):
         query = Filter().from_source(ctx.queries).where("is_cte", "False").where("fields", "name").first().get_source()

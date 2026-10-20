@@ -1,7 +1,12 @@
 from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
+from ..registry import pattern
 
-# replace placeholder <group:single>
+@pattern([
+    "<group:star>", 
+    "<group:single>",
+    "<group:cte>"
+])
 class GroupByReplace(BaseReplace):
     def content_replace(self, ctx):
 

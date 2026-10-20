@@ -1,14 +1,9 @@
 class BaseReplace:
 
-    def content_replace(self, ctx):
-        pass
-        
-class FilterReplace(BaseReplace):
     markers = ()
     words = []
-
-    def __init__(self, instance):
-        self.instance = instance
+    def content_replace(self, ctx):
+        pass
 
     def has_marker(self, content):
         self.words = []
@@ -19,6 +14,12 @@ class FilterReplace(BaseReplace):
                 is_marked = True
 
         return is_marked
+        
+class FilterReplace(BaseReplace):
+
+    def __init__(self, instance):
+        self.instance = instance
+
 
     def content_replace(self, ctx):
         self.instance.content_replace(ctx)

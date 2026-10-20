@@ -1,7 +1,16 @@
 from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
 
-# replace placeholder <having:single>
+from ..registry import pattern
+
+@pattern([
+    "<having:op:and>", 
+    "<having:op:or>",
+    "<having:neg>",
+    "<having:star>",
+    "<having:single>",
+    "<having:cte>"
+])
 class HavingReplace(BaseReplace):
     def content_replace(self, ctx):
 

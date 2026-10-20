@@ -1,8 +1,12 @@
 from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
 from ...engine.resolve_source_handlers.identifier_sources.operators import OperatorSource
+from ..registry import pattern
 
-# replace placeholder <order:single>
+@pattern([
+    "<op:list>", 
+    "<op:count>"
+])
 class BinaryOpReplace(BaseReplace):
     def content_replace(self, ctx):
         query = Filter().from_source(ctx.queries).where("is_cte", "False").where("fields", "name").where("clauses", "NOT").where("operation", "BETWEEN").first().get_source()

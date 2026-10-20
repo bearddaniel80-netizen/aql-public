@@ -3,7 +3,12 @@ from aql_link.filter.filter_dict import Filter
 from ...link import fn_call
 from ...link.registry import PRINTABLE, FuncType
 
-# replace placeholder <order:single>
+from ..registry import pattern
+
+@pattern([
+    "<table:list>", 
+    "<table:count>"
+])
 class FunctionsReplace(BaseReplace):
     def content_replace(self, ctx):
 

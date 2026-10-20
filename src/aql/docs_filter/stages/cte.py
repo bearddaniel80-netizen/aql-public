@@ -1,7 +1,14 @@
 from .base import BaseReplace
 from aql_link.filter.filter_dict import Filter
+from ..registry import pattern
 
-# replace placeholder <cte>
+@pattern([
+    "<cte:star>", 
+    "<cte:single>",
+    "<cte:op:and>",
+    "<cte:op:or>",
+    "<cte:neg>"
+])
 class CteReplace(BaseReplace):
     def content_replace(self, ctx):
         query = Filter().from_source(ctx.queries).where("is_cte", "True").where("fields", "*").first().get_source()
