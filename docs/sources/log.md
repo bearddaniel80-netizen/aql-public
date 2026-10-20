@@ -9,7 +9,7 @@ LOG files are treated as tabular data sources, making them accessible through th
 ## Commandline execution
 
 ```bash
-aql query ""
+aql query "SELECT * FROM log('data.log')"
 ```
 
 ## Query Patterns
@@ -17,7 +17,7 @@ aql query ""
 Select all columns:
 
 ```sql
-
+SELECT * FROM log('data.log')
 ```
 
 Select specific columns:
@@ -29,7 +29,7 @@ SELECT name FROM log('data.log')
 ## Common Table Expressions:
 
 ```sql
-<cte:single>
+WITH generic_cte AS ( SELECT name FROM log('data.log') ) SELECT * FROM generic_cte
 ```
 
 ---

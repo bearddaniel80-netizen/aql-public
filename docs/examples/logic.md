@@ -10,21 +10,21 @@ Logic Operators will work on all sources; here we will show JSON source.
 ## Basic Syntax
 
 ```sql 
-<op:and:star>
+SELECT * FROM json('data.json') WHERE age BETWEEN 26 AND 46
 ```
 
 ```sql 
-<op:or:star>
+SELECT * FROM json('data.json') WHERE age IN [26, 46] OR name IN ['Jim', 'Bob']
 ```
 
 Or an individual field:
 
 ```sql
-<op:and:single>
+SELECT name FROM json('data.json') WHERE age BETWEEN 26 AND 46
 ```
 
 ```sql
-<op:or:single>
+SELECT name FROM json('data.json') WHERE age IN [26, 46] OR name IN ['Jim', 'Bob']
 ```
 
 Only records matching the condition are returned.

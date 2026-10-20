@@ -9,7 +9,7 @@ CSV files are treated as tabular data sources, making them accessible through th
 ## Commandline execution
 
 ```bash
-aql query ""
+aql query "SELECT * FROM csv('data.csv')"
 ```
 
 ## Query Patterns
@@ -17,7 +17,7 @@ aql query ""
 Select all columns:
 
 ```sql
-
+SELECT * FROM csv('data.csv')
 ```
 
 Select specific columns:
@@ -29,7 +29,7 @@ SELECT name FROM csv('data.csv')
 ## Common Table Expressions:
 
 ```sql
-<cte:single>
+WITH generic_cte AS ( SELECT name FROM csv('data.csv') ) SELECT * FROM generic_cte
 ```
 
 ---

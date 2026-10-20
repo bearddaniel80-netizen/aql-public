@@ -38,8 +38,58 @@ aql query "WITH generic_cte AS ( SELECT * FROM aggregates ) SELECT * FROM generi
 The aggregate will work on all sources; here we will show JSON source.
 
 ---
-Aggregate count: <aggregate:count>
+Aggregate count: 5
 
-<aggregate:list>
+## AVG
+*Description:* Find average or mean of a collection.
+*Takes:* int
+*Returns:* float
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') GROUP BY age HAVING AVG(age) != 26
+```
+---
 
-Aggregate count: <aggregate:count>
+## COUNT
+*Description:* Count elements in a collection.
+*Takes:* int
+*Returns:* int
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') GROUP BY age HAVING COUNT(age) <= 26
+```
+---
+
+## MAX
+*Description:* Find largest value in a collection.
+*Takes:* int
+*Returns:* int
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') GROUP BY age HAVING MAX(age) >= 26
+```
+---
+
+## MIN
+*Description:* Find smallest value in a collection.
+*Takes:* int
+*Returns:* int
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') GROUP BY age HAVING MIN(age) = 26
+```
+---
+
+## SUM
+*Description:* Add all values in a collection.
+*Takes:* int
+*Returns:* int
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') GROUP BY age HAVING SUM(age) < 26
+```
+---
+
+
+
+Aggregate count: 5

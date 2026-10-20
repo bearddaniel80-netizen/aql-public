@@ -10,7 +10,7 @@ Projections will work on all sources; here we will show JSON source.
 ## Basic Syntax
 
 ```sql 
-
+SELECT * FROM json('data.json')
 ```
 
 Or an individual field:

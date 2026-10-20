@@ -9,7 +9,7 @@ XML files are treated as tabular data sources, making them accessible through th
 ## Commandline execution
 
 ```bash
-aql query ""
+aql query "SELECT * FROM xml('data.xml')"
 ```
 
 ## Query Patterns
@@ -17,7 +17,7 @@ aql query ""
 Select all columns:
 
 ```sql
-
+SELECT * FROM xml('data.xml')
 ```
 
 Select specific columns:
@@ -29,7 +29,7 @@ SELECT name FROM xml('data.xml')
 ## Common Table Expressions:
 
 ```sql
-<cte:single>
+WITH generic_cte AS ( SELECT name FROM xml('data.xml') ) SELECT * FROM generic_cte
 ```
 
 ---

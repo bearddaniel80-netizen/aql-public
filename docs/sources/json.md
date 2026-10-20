@@ -9,7 +9,7 @@ JSON files are treated as tabular data sources, making them accessible through t
 ## Commandline execution
 
 ```bash
-aql query ""
+aql query "SELECT * FROM json('data.json')"
 ```
 
 ## Query Patterns
@@ -17,7 +17,7 @@ aql query ""
 Select all columns:
 
 ```sql
-
+SELECT * FROM json('data.json')
 ```
 
 Select specific columns:
@@ -29,7 +29,7 @@ SELECT name FROM json('data.json')
 ## Common Table Expressions:
 
 ```sql
-<cte:single>
+WITH generic_cte AS ( SELECT name FROM json('data.json') ) SELECT * FROM generic_cte
 ```
 
 ---

@@ -9,7 +9,7 @@ YAML files are treated as tabular data sources, making them accessible through t
 ## Commandline execution
 
 ```bash
-aql query ""
+aql query "SELECT * FROM yaml('data.yml')"
 ```
 
 ## Query Patterns
@@ -17,7 +17,7 @@ aql query ""
 Select all columns:
 
 ```sql
-
+SELECT * FROM yaml('data.yml')
 ```
 
 Select specific columns:
@@ -29,7 +29,7 @@ SELECT name FROM yaml('data.yml')
 ## Common Table Expressions:
 
 ```sql
-<cte:single>
+WITH generic_cte AS ( SELECT name FROM yaml('data.yml') ) SELECT * FROM generic_cte
 ```
 
 ---

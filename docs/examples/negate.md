@@ -10,13 +10,13 @@ The negation operator will work on all sources; here we will show JSON source.
 ## Basic Syntax
 
 ```sql 
-<neg:star>
+SELECT * FROM json('data.json') WHERE NOT age BETWEEN 26 AND 46
 ```
 
 Or an individual field:
 
 ```sql
-<neg:single>
+SELECT name FROM json('data.json') WHERE NOT age BETWEEN 26 AND 46
 ```
 
 Some operators have unique orders:

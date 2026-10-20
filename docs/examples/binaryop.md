@@ -36,7 +36,98 @@ aql query "WITH generic_cte AS ( SELECT * FROM operators ) SELECT * FROM generic
 The binary operator will work on all sources; here we will show JSON source.
 
 ---
-Binary Operator count: <op:count>
+Binary Operator count: 13
 
-<op:list>
-Binary Operator count: <op:count>
+## BETWEEN
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age BETWEEN 26 AND 46
+```
+---
+
+## IN
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age IN [26, 46]
+```
+---
+
+## ~=
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE name ~= 'Jim'
+```
+---
+
+## !=
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age != 26
+```
+---
+
+## <=
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age <= 26
+```
+---
+
+## >=
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age >= 26
+```
+---
+
+## =
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE name ~= 'Jim'
+```
+---
+
+## <
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age <= 26
+```
+---
+
+## >
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE age >= 26
+```
+---
+
+## LIKE
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE name LIKE 'Jim'
+```
+---
+
+## CONTAINS
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE name CONTAINS 'Jim'
+```
+---
+
+## STARTSWITH
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE name STARTSWITH 'Jim'
+```
+---
+
+## ENDSWITH
+### Basic syntax
+```sql
+SELECT name FROM json('data.json') WHERE name ENDSWITH 'Jim'
+```
+---
+
+
+Binary Operator count: 13

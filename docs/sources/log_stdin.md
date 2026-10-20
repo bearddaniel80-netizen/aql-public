@@ -29,7 +29,7 @@ Select specific columns:
 ## Common Table Expressions:
 
 ```sql
-<cte:single>
+
 ```
 
 ---
