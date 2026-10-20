@@ -28,6 +28,5 @@ class AggregatesReplace(BaseReplace):
             result = result.replace("<query>", tmp_query)
             results = results + result
 
-        print(f"results: {results}")
         ctx.content = ctx.content.replace("<aggregate:list>", results)
         ctx.content = ctx.content.replace("<aggregate:count>", str(len(query_results)))
