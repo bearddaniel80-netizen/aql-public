@@ -9,7 +9,7 @@ AQL provides a SQL-inspired interface for querying Aegis data, files, and standa
 List all registered query sources.
 
 ```bash
-aegis query "SHOW sources"
+aql query "SHOW sources"
 ```
 
 Example output:
@@ -31,21 +31,21 @@ stdin
 View available fields and metadata.
 
 ```bash
-aegis query "DESCRIBE clusters"
+aql query "DESCRIBE clusters"
 ```
 
 ```bash
-aegis query "DESCRIBE failures"
+aql query "DESCRIBE failures"
 ```
 
 For file-based sources:
 
 ```bash
-aegis query "DESCRIBE json('data.json')"
+aql query "DESCRIBE json('data.json')"
 ```
 
 ```bash
-aegis query "DESCRIBE csv('data.csv')"
+aql query "DESCRIBE csv('data.csv')"
 ```
 
 ---
@@ -55,35 +55,35 @@ aegis query "DESCRIBE csv('data.csv')"
 ### List Available Clusters
 
 ```bash
-aegis query "SHOW clusters"
+aql query "SHOW clusters"
 ```
 
 ### Query All Clusters
 
 ```bash
-aegis query "SELECT * FROM clusters"
+aql query "SELECT * FROM clusters"
 ```
 
 ### Filter Results
 
 ```bash
-aegis query "SELECT * FROM clusters WHERE cluster_id = 1"
+aql query "SELECT * FROM clusters WHERE cluster_id = 1"
 ```
 
 ### Select Specific Fields
 
 ```bash
-aegis query "SELECT error_type FROM clusters WHERE cluster_id = 1"
+aql query "SELECT error_type FROM clusters WHERE cluster_id = 1"
 ```
 
 ```bash
-aegis query "SELECT cluster_id FROM clusters WHERE cluster_id = 1"
+aql query "SELECT cluster_id FROM clusters WHERE cluster_id = 1"
 ```
 
 ### Use IN Filters
 
 ```bash
-aegis query "SELECT cluster_id FROM clusters WHERE cluster_id IN [1, 5]"
+aql query "SELECT cluster_id FROM clusters WHERE cluster_id IN [1, 5]"
 ```
 
 ---
@@ -93,19 +93,19 @@ aegis query "SELECT cluster_id FROM clusters WHERE cluster_id IN [1, 5]"
 List failure data sources:
 
 ```bash
-aegis query "SHOW failures"
+aql query "SHOW failures"
 ```
 
 Inspect schema:
 
 ```bash
-aegis query "DESCRIBE failures"
+aql query "DESCRIBE failures"
 ```
 
 Query all failures:
 
 ```bash
-aegis query "SELECT * FROM failures"
+aql query "SELECT * FROM failures"
 ```
 
 ---
@@ -115,17 +115,17 @@ aegis query "SELECT * FROM failures"
 Inspect file structure:
 
 ```bash
-aegis query "SHOW json('data.json')"
+aql query "SHOW json('data.json')"
 ```
 
 ```bash
-aegis query "DESCRIBE json('data.json')"
+aql query "DESCRIBE json('data.json')"
 ```
 
 Query file contents:
 
 ```bash
-aegis query "SELECT * FROM json('data.json')"
+aql query "SELECT * FROM json('data.json')"
 ```
 
 ---
@@ -135,17 +135,17 @@ aegis query "SELECT * FROM json('data.json')"
 Inspect file structure:
 
 ```bash
-aegis query "SHOW csv('data.csv')"
+aql query "SHOW csv('data.csv')"
 ```
 
 ```bash
-aegis query "DESCRIBE csv('data.csv')"
+aql query "DESCRIBE csv('data.csv')"
 ```
 
 Query file contents:
 
 ```bash
-aegis query "SELECT * FROM csv('data.csv')"
+aql query "SELECT * FROM csv('data.csv')"
 ```
 
 ---
@@ -155,17 +155,17 @@ aegis query "SELECT * FROM csv('data.csv')"
 Inspect file structure:
 
 ```bash
-aegis query "SHOW xml('data.xml')"
+aql query "SHOW xml('data.xml')"
 ```
 
 ```bash
-aegis query "DESCRIBE xml('data.xml')"
+aql query "DESCRIBE xml('data.xml')"
 ```
 
 Query file contents:
 
 ```bash
-aegis query "SELECT * FROM xml('data.xml')"
+aql query "SELECT * FROM xml('data.xml')"
 ```
 
 ---
@@ -175,17 +175,17 @@ aegis query "SELECT * FROM xml('data.xml')"
 Inspect file structure:
 
 ```bash
-aegis query "SHOW yaml('data.yml')"
+aql query "SHOW yaml('data.yml')"
 ```
 
 ```bash
-aegis query "DESCRIBE yaml('data.yml')"
+aql query "DESCRIBE yaml('data.yml')"
 ```
 
 Query file contents:
 
 ```bash
-aegis query "SELECT * FROM yaml('data.yml')"
+aql query "SELECT * FROM yaml('data.yml')"
 ```
 
 ---
@@ -197,29 +197,29 @@ AQL can read directly from stdin.
 JSON:
 
 ```bash
-cat data.json | aegis query "SELECT *"
+cat data.json | aql query "SELECT *"
 ```
 
 ```bash
-cat data.json | aegis query "SELECT * FROM stdin"
+cat data.json | aql query "SELECT * FROM stdin"
 ```
 
 CSV:
 
 ```bash
-cat data.csv | aegis query "SELECT * FROM stdin"
+cat data.csv | aql query "SELECT * FROM stdin"
 ```
 
 XML:
 
 ```bash
-cat data.xml | aegis query "SELECT * FROM stdin"
+cat data.xml | aql query "SELECT * FROM stdin"
 ```
 
 YAML:
 
 ```bash
-cat data.yml | aegis query "SELECT * FROM stdin"
+cat data.yml | aql query "SELECT * FROM stdin"
 ```
 
 ---
